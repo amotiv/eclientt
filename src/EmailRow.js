@@ -1,15 +1,11 @@
 import React from "react";
-import Checkbox from "@material-ui/core/Checkbox";
-import { IconButton } from "@material-ui/core";
-import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
-import LabelImportantOutlinedIcon from "@material-ui/icons/LabelImportantOutlined";
 
 import "./EmailRow.css";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { selectMail } from "./features/mailSlice";
 
-function EmailRow({ id, title, subject, description, time }) {
+function EmailRow({ id, title, subject, description, time,avatar }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -21,6 +17,7 @@ function EmailRow({ id, title, subject, description, time }) {
         subject,
         description,
         time,
+        avatar,
       })
     );
 
@@ -30,13 +27,6 @@ function EmailRow({ id, title, subject, description, time }) {
   return (
     <div onClick={openMail} className="emailRow">
       <div className="emailRow__options">
-        <Checkbox />
-        <IconButton>
-          <StarBorderOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <LabelImportantOutlinedIcon />
-        </IconButton>
       </div>
 
       <h3 className="emailRow__title">{title}</h3>
@@ -49,6 +39,7 @@ function EmailRow({ id, title, subject, description, time }) {
       </div>
 
       <p className="emailRow__time">{time}</p>
+      <img width="30" src={avatar} />
     </div>
   );
 }
